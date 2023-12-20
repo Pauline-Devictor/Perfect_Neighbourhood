@@ -27,7 +27,6 @@ public class LightManager : MonoBehaviour
         }
     }
 
-
     public void OutsideLights(bool turnOn, int hour)
     {
         float intensity = 0;
@@ -35,10 +34,10 @@ public class LightManager : MonoBehaviour
             switch (hour)
             {
                 case 13:
-                    intensity = 3;
+                    intensity = 1.6f;
                     break;
                 case 14:
-                    intensity = 2.25f;
+                    intensity = 2f;
                     break;
                 case 15:
                     intensity = 1.5f;
@@ -52,10 +51,6 @@ public class LightManager : MonoBehaviour
                 default:
                     intensity = 1;
                     break;
-            }
-            foreach (Light light in childLights)
-            {
-                light.intensity = intensity;
             }
         }
         foreach (Light light in directLights)
