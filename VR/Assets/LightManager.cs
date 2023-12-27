@@ -1,11 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Meta.WitAi;
+using Meta.WitAi.Json;
+using UnityEngine;
 
 public class LightManager : MonoBehaviour
 {
     [SerializeField] Transform lightContainer;
     public List<Light> directLights = new List<Light>();
     public List<Light> childLights = new List<Light>();
+
+    public const string TRAIT_ID = "wit$on_off";
+    public const string TRAIT_ON_VALUE = "on";
 
     void Start()
     {
@@ -68,5 +74,26 @@ public class LightManager : MonoBehaviour
         {
             light.intensity = intensity;
         }
+    }
+
+
+
+    // On response callback
+    public void OnResponse(WitResponseNode commandResult)
+    {
+        // Check for trait value
+        var traitValue = commandResult.GetTraitValue(TRAIT_ID);
+        if (string.IsNullOrEmpty(traitValue))
+        {
+            Debug.LogWarning($"No value found for trait: {TRAIT_ID}");
+            return;
+        }
+
+        // Get value
+        bool isOn = string.Equals(traitValue, TRAIT_ON_VALUE);
+        Debug.Log("isOn : " + isOn);
+        CeillingLights(isOn);
+        OutsideLights(isOn, 13);
+        
     }
 }
