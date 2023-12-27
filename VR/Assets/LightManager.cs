@@ -2,16 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Meta.WitAi;
 using Meta.WitAi.Json;
-using UnityEngine;
+using Meta.WitAi.Data.Entities;
 
 public class LightManager : MonoBehaviour
 {
     [SerializeField] Transform lightContainer;
-    public List<Light> directLights = new List<Light>();
-    public List<Light> childLights = new List<Light>();
-
-    public const string TRAIT_ID = "wit$on_off";
-    public const string TRAIT_ON_VALUE = "on";
+    public List<Light> directLights = new();
+    public List<Light> childLights = new();
 
     void Start()
     {
@@ -33,7 +30,7 @@ public class LightManager : MonoBehaviour
         }
     }
 
-    public void OutsideLights(bool turnOn, int hour)
+    private void OutsideLights(bool turnOn, int hour)
     {
         float intensity = 0;
         if (turnOn) {
@@ -65,7 +62,7 @@ public class LightManager : MonoBehaviour
         }
     }
 
-    public void CeillingLights(bool turnOn)
+    private void CeillingLights(bool turnOn)
     {
         float intensity;
         if (turnOn) { intensity = 0.5f; }
@@ -76,24 +73,107 @@ public class LightManager : MonoBehaviour
         }
     }
 
-
+    private void OutsideLights(bool turnOn)
+    {
+        float intensity = 0;
+        if (turnOn)
+            intensity = 1;
+        foreach (Light light in directLights)
+        {
+            light.intensity = intensity;
+        }
+    }
 
     // On response callback
     public void OnResponse(WitResponseNode commandResult)
     {
-        // Check for trait value
-        var traitValue = commandResult.GetTraitValue(TRAIT_ID);
-        if (string.IsNullOrEmpty(traitValue))
-        {
-            Debug.LogWarning($"No value found for trait: {TRAIT_ID}");
-            return;
-        }
 
-        // Get value
-        bool isOn = string.Equals(traitValue, TRAIT_ON_VALUE);
-        Debug.Log("isOn : " + isOn);
-        CeillingLights(isOn);
-        OutsideLights(isOn, 13);
+        IsLightOnCommand(commandResult);
+        IsLightOffCommand(commandResult);
+        IsWindowOnCommand(commandResult);
+        IsWindowOffCommand(commandResult);
+        IsHourCommand(commandResult);
+
+    }
+
+
+    private void IsLightOnCommand(WitResponseNode commandResult)
+    {
+        WitEntityData[] action = commandResult.GetEntities("lightStatus:lightStatus");
+        if (action == null) return;
+
+        if (action.Length > 0)
+            {
+                if (action[0].value != null)
+                {
+                    if (action[0].value == "Allume les lumières")
+                        CeillingLights(true);
+                }
+            }
         
+    }
+    private void IsLightOffCommand(WitResponseNode commandResult)
+    {
+
+        WitEntityData[] action = commandResult.GetEntities("lightOffStatus:lightOffStatus");
+        if (action == null) return;
+        if (action.Length > 0)
+        {
+            if (action[0].value != null)
+            {
+                if (action[0].value == "éteint la lumière" || action[0].value == "éteins la lumière")
+                    CeillingLights(false);
+            }
+        }
+    }
+    private void IsWindowOnCommand(WitResponseNode commandResult)
+    {
+        WitEntityData[] action = commandResult.GetEntities("WindowOpenStatus:WindowOpenStatus");
+        if (action == null) return;
+
+        if (action.Length > 0)
+        {
+            if (action[0].value != null)
+            {
+                if (action[0].value == "Ouvre les rideaux" || action[0].value == "ouvre les rideaux")
+                    OutsideLights(true);
+            }
+        }
+    }
+    private void IsWindowOffCommand(WitResponseNode commandResult)
+    {
+        WitEntityData[] action = commandResult.GetEntities("WindowCloseStatus:WindowCloseStatus");
+        if (action == null) return;
+
+        if (action.Length > 0)
+        {
+            if (action[0].value != null)
+            {
+                if (action[0].value == "Ferme les rideaux" || action[0].value == "ferme les rideaux")
+                    OutsideLights(false);
+            }
+        }
+    }
+    private void IsHourCommand(WitResponseNode commandResult)
+    {
+        WitEntityData[] action = commandResult.GetEntities("hour_number:hour_number");
+        int hour = 13;
+        if (action == null) return;
+        Debug.Log(action);
+
+        if (action.Length > 0)
+        {
+            if (action[0].name != null)
+            {
+                Debug.Log(action[0].name);
+                if (action[0].name == "hour_number")
+                {
+                    Debug.Log(action[0].value);
+                    hour = int.Parse(action[0].value);
+                    Debug.Log(hour);
+                    OutsideLights(true, hour);
+                }     
+            }
+        }
     }
 }
