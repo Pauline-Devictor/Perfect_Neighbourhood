@@ -104,9 +104,9 @@ public class LightManager : MonoBehaviour
 
         if (action.Length > 0)
             {
-                if (action[0].value != null)
+                if (action[0].name != null)
                 {
-                    if (action[0].value == "Allume les lumières")
+                    if (action[0].name == "lightStatus")
                         CeillingLights(true);
                 }
             }
@@ -119,9 +119,9 @@ public class LightManager : MonoBehaviour
         if (action == null) return;
         if (action.Length > 0)
         {
-            if (action[0].value != null)
+            if (action[0].name != null)
             {
-                if (action[0].value == "éteint la lumière" || action[0].value == "éteins la lumière")
+                if (action[0].name == "lightOffStatus")
                     CeillingLights(false);
             }
         }
@@ -133,9 +133,9 @@ public class LightManager : MonoBehaviour
 
         if (action.Length > 0)
         {
-            if (action[0].value != null)
+            if (action[0].name != null)
             {
-                if (action[0].value == "Ouvre les rideaux" || action[0].value == "ouvre les rideaux")
+                if (action[0].name == "WindowOpenStatus")
                     OutsideLights(true);
             }
         }
@@ -147,9 +147,9 @@ public class LightManager : MonoBehaviour
 
         if (action.Length > 0)
         {
-            if (action[0].value != null)
+            if (action[0].name != null)
             {
-                if (action[0].value == "Ferme les rideaux" || action[0].value == "ferme les rideaux")
+                if (action[0].name == "WindowCloseStatus")
                     OutsideLights(false);
             }
         }
@@ -157,20 +157,15 @@ public class LightManager : MonoBehaviour
     private void IsHourCommand(WitResponseNode commandResult)
     {
         WitEntityData[] action = commandResult.GetEntities("hour_number:hour_number");
-        int hour = 13;
         if (action == null) return;
-        Debug.Log(action);
 
         if (action.Length > 0)
         {
             if (action[0].name != null)
             {
-                Debug.Log(action[0].name);
                 if (action[0].name == "hour_number")
                 {
-                    Debug.Log(action[0].value);
-                    hour = int.Parse(action[0].value);
-                    Debug.Log(hour);
+                    int hour = int.Parse(action[0].value);
                     OutsideLights(true, hour);
                 }     
             }

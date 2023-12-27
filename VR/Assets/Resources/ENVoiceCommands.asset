@@ -10,147 +10,132 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae5a46bda3295124c99b0e6537ac7252, type: 3}
-  m_Name: LightVoiceConfig
+  m_Name: ENVoiceCommands
   m_EditorClassIdentifier: 
-  _clientAccessToken: 4Y5764MCBUVAZZM3OO5KLZJUYLSASS6P
+  _clientAccessToken: CFZK7YNTYJLU2UKVYMEEK56XUG5U23TC
   _appInfo:
-    name: perfect_neighbourhood
-    id: 8118426451526552
-    lang: fr
+    name: en_perfect_neighbourhood
+    id: 1316111772432872
+    lang: en
     isPrivate: 1
-    createdAt: 2023-12-27T07:50:02-0800
+    createdAt: 2023-12-27T12:12:02-0800
     trainingStatus: 1
-    lastTrainDuration: 89
-    lastTrainedAt: 2023-12-27T12:00:04-0800
-    nextTrainAt: 2023-12-27T11:58:35-0800
+    lastTrainDuration: 107
+    lastTrainedAt: 2023-12-27T12:33:30-0800
+    nextTrainAt: 2023-12-27T12:31:43-0800
     intents:
-    - id: 674396308187272
-      name: Indoor_Lights_On
+    - id: 3697350743882316
+      name: hour_number
       entities:
-      - name: lightStatus:lightStatus
-        id: 357989213503970
-    - id: 3674299632848739
+      - name: hour_number:hour_number
+        id: 704570621436022
+    - id: 328682890037632
       name: indoor_lights_off
       entities:
+      - name: WindowOpenStatus:WindowOpenStatus
+        id: 776665440946314
       - name: lightOffStatus:lightOffStatus
-        id: 1372889413366654
-    - id: 381066184455844
-      name: outdoors_lights_off
+        id: 771951831433688
+    - id: 351801924143148
+      name: indoor_lights_on
+      entities:
+      - name: lightStatus:lightStatus
+        id: 2065123473837791
+    - id: 1606447053495257
+      name: outdoor_lights_off
       entities:
       - name: WindowCloseStatus:WindowCloseStatus
-        id: 670328715304792
-    - id: 3890359397866140
-      name: outdoors_lights_on
-      entities:
-      - name: WindowOpenStatus:WindowOpenStatus
-        id: 389744870163546
-    - id: 298715036498630
-      name: outdoors_specific_hour
-      entities:
-      - name: wit$datetime:datetime
-        id: 1408264976758097
-      - name: wit$number:number
-        id: 764850415473080
+        id: 1077771773673798
+    - id: 1383862606343781
+      name: outdoor_lights_on
+      entities: []
     entities:
     - name: WindowCloseStatus
-      id: 1053568395971964
+      id: 1461332527926086
       lookups:
+      - free-text
       - keywords
       roles:
       - name: WindowCloseStatus
-        id: 670328715304792
+        id: 1077771773673798
       keywords:
-      - keyword: Close
+      - keyword: Close windows
         synonyms:
-        - Close
-      - keyword: Ferme les rideaux
-        synonyms:
-        - ferme les rideaux
-        - ferment les rideaux
-        - fermer les rideaux
-        - fermer rideaux
-        - fermez rideaux
-      - keyword: Windows close
-        synonyms:
-        - Windows close
+        - close windows
+        - outdoor lights off
+        - outside lights off
+        - outside off
     - name: WindowOpenStatus
-      id: 1082600146490874
+      id: 1400674790860460
       lookups:
       - free-text
       - keywords
       roles:
       - name: WindowOpenStatus
-        id: 389744870163546
+        id: 776665440946314
       keywords:
-      - keyword: Open
+      - keyword: Open windows
         synonyms:
-        - Open
-      - keyword: Ouvre les rideaux
+        - lights outside
+        - open windows
+        - outdoor lights on
+        - outside on
+    - name: hour_number
+      id: 348940747768856
+      lookups:
+      - free-text
+      - keywords
+      roles:
+      - name: hour_number
+        id: 704570621436022
+      keywords:
+      - keyword: 13
         synonyms:
-        - ouvre les rideaux
-        - ouvrir les rideaux
-        - ouvrir rideaux
-      - keyword: Window Open
+        - 13
+      - keyword: 14
         synonyms:
-        - Window Open
+        - 14
+      - keyword: 15
+        synonyms:
+        - 15
+      - keyword: 16
+        synonyms:
+        - 16
+      - keyword: 17
+        synonyms:
+        - 17
     - name: lightOffStatus
-      id: 1090600492354647
+      id: 678873680899940
       lookups:
       - free-text
       - keywords
       roles:
       - name: lightOffStatus
-        id: 1372889413366654
+        id: 771951831433688
       keywords:
-      - keyword: Off
+      - keyword: Lights off
         synonyms:
-        - Off
-      - keyword: Turn off
-        synonyms:
-        - Turn off
-      - keyword: "les lumi\xE8res"
-        synonyms:
-        - "la lumi\xE8re"
-        - "les lumi\xE8res"
-      - keyword: "\xE9teint les lumi\xE8res"
-        synonyms:
-        - "\xE9teindre lumi\xE8res"
-        - "\xE9teint"
-        - "\xE9teint les lumi\xE8res"
+        - indoors off
+        - lights off
+        - off
+        - switch off
+        - turn off
     - name: lightStatus
-      id: 1409504736613530
+      id: 690619719538234
       lookups:
       - free-text
       - keywords
       roles:
       - name: lightStatus
-        id: 357989213503970
+        id: 2065123473837791
       keywords:
-      - keyword: "Allume les lumi\xE8res"
+      - keyword: Lights on
         synonyms:
-        - "allume la lumi\xE8re"
-        - "allume les lumi\xE8res"
-        - "allumer lumi\xE8res"
-        - lumos
-        - "\xE9claire la pi\xE8ce"
-      - keyword: "lumi\xE8res"
-        synonyms:
-        - lampes
-        - "lumi\xE8res"
-    - name: wit$datetime
-      id: 53679cd0-f677-4eb3-9bef-3197d3910afc
-      lookups: []
-      roles:
-      - name: datetime
-        id: 1408264976758097
-      keywords: []
-    - name: wit$number
-      id: 53679cd0-e608-461f-a0e8-edb4d07b1027
-      lookups: []
-      roles:
-      - name: number
-        id: 764850415473080
-      keywords: []
+        - indoors on
+        - lights on
+        - on
+        - switch on
+        - turn on
     traits: []
     versionTags: []
     voices:
