@@ -19,7 +19,7 @@ public class SuspectsList : MonoBehaviour
         public string fivePM;
         public string hair;
         public string height;
-        public string relationship;
+        public string relation;
         public string clothing;
     }
 
@@ -45,8 +45,8 @@ public class SuspectsList : MonoBehaviour
             suspect.fivePM = suspectsArray[i, 6];
             suspect.hair = suspectsArray[i, 7];
             suspect.height = suspectsArray[i, 8];
-            suspect.relationship = suspectsArray[i, 9];
-            suspect.clothing = suspectsArray[i, 10];
+            suspect.relation = suspectsArray[i, 9];
+            suspect.clothing = suspectsArray[i, 11];
             suspects.Add(suspect);
         }
     }
