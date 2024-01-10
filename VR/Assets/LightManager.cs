@@ -33,9 +33,12 @@ public class LightManager : MonoBehaviour
     private void OutsideLights(bool turnOn, int hour)
     {
         float intensity = 0;
+        Color color = Color.white;
         if (turnOn) {
             switch (hour)
             {
+                case -1:
+                    return;
                 case 13:
                     intensity = 1.6f;
                     break;
@@ -49,7 +52,8 @@ public class LightManager : MonoBehaviour
                     intensity = 1;
                     break;
                 case 17:
-                    intensity = 0.5f;
+                    color = new Color(1, (float) 0.55, 0);
+                    intensity = 1f;
                     break;
                 default:
                     intensity = 1;
@@ -58,6 +62,7 @@ public class LightManager : MonoBehaviour
         }
         foreach (Light light in directLights)
         {
+            light.color = color;
             light.intensity = intensity;
         }
     }
@@ -165,8 +170,20 @@ public class LightManager : MonoBehaviour
             {
                 if (action[0].name == "hour_number")
                 {
-                    int hour = int.Parse(action[0].value);
-                    OutsideLights(true, hour);
+                    int hour = -1;
+                    try
+                    {
+                        hour = int.Parse(action[0].value);
+                    }
+                    catch
+                    {
+                        return;
+                    }
+                    finally 
+                    {
+                        OutsideLights(true, hour);
+                    }
+                    
                 }     
             }
         }
