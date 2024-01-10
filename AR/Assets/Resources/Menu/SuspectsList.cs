@@ -21,6 +21,7 @@ public class SuspectsList : MonoBehaviour
         public string height;
         public string relation;
         public string clothing;
+        public string position;
     }
 
     void Start()
@@ -39,6 +40,7 @@ public class SuspectsList : MonoBehaviour
             suspect.name = suspectsArray[i, 0];
             suspect.gender = suspectsArray[i, 1];
             suspect.onePM = suspectsArray[i, 2];
+            suspect.position = suspect.onePM;
             suspect.twoPM = suspectsArray[i, 3];
             suspect.threePM = suspectsArray[i, 4];
             suspect.fourPM = suspectsArray[i, 5];

@@ -111,12 +111,12 @@ public class FilteringSuspects : MonoBehaviour
         FilterByClothes(GameObject.Find("ClothesFilter").GetComponent<TMP_Dropdown>());
         FilterByRelation(GameObject.Find("RelationFilter").GetComponent<TMP_Dropdown>());
         GameObject placeholder = GameObject.Find("ScrollSuspectsNames/Viewport/Content");
-        Debug.Log(placeholder);
         placeholder.GetComponent<TextMeshProUGUI>().text = "";
         foreach(SuspectsList.Suspect suspect in filteredSuspects)
         {
             placeholder.GetComponent<TMPro.TextMeshProUGUI>().text += suspect.name + "\n";
         }
+        GetComponent<FilteringPositions>().Filtering(filteredSuspects);
     }
 
     private void FilterByHairColor(TMP_Dropdown dropdown)
