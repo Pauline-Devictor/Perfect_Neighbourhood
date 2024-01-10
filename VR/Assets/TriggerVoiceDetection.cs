@@ -1,16 +1,13 @@
 using Meta.WitAi;
 using Meta.WitAi.Requests;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Oculus.VoiceSDK.UX
 {
     public class TriggerVoiceDetection : MonoBehaviour
     {
         // The button to be observed
-        [SerializeField] Button _button;
-        // The button label to be adjusted with state
-        [SerializeField] Text _buttonLabel;
+        [SerializeField] GameObject Transcription;
 
         [Tooltip("Reference to the current voice service")]
         [SerializeField] private VoiceService _voiceService;
@@ -37,37 +34,6 @@ namespace Oculus.VoiceSDK.UX
             if (_voiceService == null)
             {
                 _voiceService = FindObjectOfType<VoiceService>();
-            }
-        }
-        // Add click delegate
-        private void OnEnable()
-        {
-            RefreshActive();
-            if (_button != null)
-            {
-                _button.onClick.AddListener(OnClick);
-            }
-        }
-        // Remove click delegate
-        private void OnDisable()
-        {
-            _isActive = false;
-            if (_button != null)
-            {
-                _button.onClick.RemoveListener(OnClick);
-            }
-        }
-
-        // On click, activate if not active & deactivate if active
-        private void OnClick()
-        {
-            if (!_isActive)
-            {
-                Activate();
-            }
-            else
-            {
-                Deactivate();
             }
         }
 
@@ -121,9 +87,17 @@ namespace Oculus.VoiceSDK.UX
         // Refresh active text
         private void RefreshActive()
         {
-            if (_buttonLabel != null)
+            if (Transcription != null)
             {
-                _buttonLabel.text = _isActive ? _deactivateText : _activateText;
+                if(_isActive){
+                    Transcription.SetActive(false);
+                    _isActive = false;
+                }
+                else
+                {
+                    Transcription.SetActive(true);
+                    _isActive = true;
+                }
             }
         }
         public void ActivateVoice()
