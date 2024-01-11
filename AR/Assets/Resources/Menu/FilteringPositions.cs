@@ -8,15 +8,14 @@ public class FilteringPositions : MonoBehaviour
     private GameObject slider;
     private Dictionary<string, Vector3> locations;
     public GameObject suspectMarker;
-    private string[] timeSlots = {"onePM", "twoPM", "threePM", "fourPM", "fivePM"};
 
     public void Start(){
         slider = GameObject.Find("Slider");
         locations = GetComponent<Locations>().locations;
-        setupMap(null);
+        setupMap(null, 0);
     }
 
-    void setupMap(List<SuspectsList.Suspect> suspects){
+    void setupMap(List<SuspectsList.Suspect> suspects, int timeSlot){
         if(suspects == null) return;
         GameObject map = GameObject.Find("MapMenu");
         foreach (Transform child in map.transform) {
@@ -25,27 +24,21 @@ public class FilteringPositions : MonoBehaviour
             }
         }
         foreach(SuspectsList.Suspect suspect in suspects){
-            if(locations.ContainsKey(suspect.position)){
-                //instantiate with default position
+            if(locations.ContainsKey(suspect.positions[timeSlot])){
                 GameObject marker = Instantiate(suspectMarker);
                 marker.transform.SetParent(map.transform);
-                //convert vector 3 to world position
-                Vector3 position3D = locations[suspect.position];
-                Vector3 position2D = Camera.main.WorldToScreenPoint(position3D);
-                //set the position
-                marker.transform.position = position2D;
+                marker.transform.localPosition = locations[suspect.positions[timeSlot]];
                 marker.transform.localScale = new Vector3(1, 1, 1);
-                //log the parent
-                Debug.Log(marker.transform.position);
+                marker.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
+                marker.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
+                marker.GetComponent<RectTransform>().anchoredPosition = new Vector2(locations[suspect.positions[timeSlot]].x, locations[suspect.positions[timeSlot]].y);
             }
         }
     }
 
     public void Filtering(List<SuspectsList.Suspect> suspects){
         int value = (int)slider.GetComponent<Slider>().value;
-        string timeSlot = timeSlots[value];
-        //TODO
-        setupMap(suspects);
+        setupMap(suspects, value);
     }
 }
 

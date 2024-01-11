@@ -11,14 +11,25 @@ public class FilteringSuspects : MonoBehaviour
     
     void Start()
     {
-        suspects = new List<SuspectsList.Suspect>();
+        StartCoroutine(SetupFilters());
+    }
+
+    private void RealStart (){
         filteredSuspects = new List<SuspectsList.Suspect>();
+        
         suspects = suspectsList.suspects;
+
         FindDistinctHairColors();
         PutDistinctHeightSlots();
         FindDistinctClothes();
         FindDistinctGender();
         FindDistinctRelation();
+    }
+
+    IEnumerator SetupFilters()
+    {
+        yield return new WaitForSeconds(0.5f);
+        RealStart();
     }
 
     /* SETUP THE FILTERS */
