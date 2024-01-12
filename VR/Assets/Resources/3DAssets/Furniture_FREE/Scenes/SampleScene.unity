@@ -1065,10 +1065,30 @@ PrefabInstance:
       propertyPath: _transformFeatureStateProvider
       value: 
       objectReference: {fileID: 1131222272}
+    - target: {fileID: 2588925041195329601, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588925041195329601, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.data[2]._state
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588925041195329601, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.data[3]._state
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588925041195329601, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.data[2]._feature
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588925041195329601, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.data[3]._feature
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2588925041195329604, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
       propertyPath: _shapes.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 142b56109fc633544bfb5edfc0744c04, type: 2}
+      objectReference: {fileID: 11400000, guid: 3276a867d2725d94d95c83f1ad051194, type: 2}
     - target: {fileID: 2588925041195329604, guid: 0e1b2ff3bedb5c0498180178216f13d0, type: 3}
       propertyPath: _fingerFeatureStateProvider
       value: 
@@ -5950,6 +5970,7 @@ MonoBehaviour:
   _activateImmediately: 0
   _deactivateText: Deactivate
   _deactivateAndAbort: 0
+  table: {fileID: 0}
 --- !u!1001 &1285279987
 PrefabInstance:
   m_ObjectHideFlags: 0

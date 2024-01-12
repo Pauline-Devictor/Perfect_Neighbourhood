@@ -10,20 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cfe1df7ed391a24fbe2a2d275e81b06, type: 3}
-  m_Name: VocalPose
+  m_Name: VocalPose1
   m_EditorClassIdentifier: 
-  _shapeName: Vocal Pose
+  _shapeName: VocalPose1
   _thumbFeatureConfigs:
     _value:
     - _mode: 0
       _feature: 0
       _state: 0
-    - _mode: 0
-      _feature: 2
-      _state: 8
-    - _mode: 0
-      _feature: 1
-      _state: 3
   _indexFeatureConfigs:
     _value:
     - _mode: 1
@@ -48,14 +42,11 @@ MonoBehaviour:
     - _mode: 1
       _feature: 1
       _state: 3
-    - _mode: 0
-      _feature: 2
-      _state: 8
   _pinkyFeatureConfigs:
     _value:
     - _mode: 0
       _feature: 0
       _state: 0
-    - _mode: 0
+    - _mode: 1
       _feature: 1
-      _state: 3
+      _state: 5
