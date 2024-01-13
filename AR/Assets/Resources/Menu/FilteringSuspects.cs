@@ -127,7 +127,8 @@ public class FilteringSuspects : MonoBehaviour
         {
             placeholder.GetComponent<TMPro.TextMeshProUGUI>().text += suspect.name + "\n";
         }
-        GetComponent<FilteringPositions>().Filtering(filteredSuspects);
+        GetComponent<FilteringPositions>().suspects = filteredSuspects;
+        GetComponent<FilteringPositions>().FilteringPositionsByTime();
     }
 
     private void FilterByHairColor(TMP_Dropdown dropdown)

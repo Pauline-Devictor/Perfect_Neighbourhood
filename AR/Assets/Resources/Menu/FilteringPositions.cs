@@ -8,6 +8,7 @@ public class FilteringPositions : MonoBehaviour
     private GameObject slider;
     private Dictionary<string, Vector3> locations;
     public GameObject suspectMarker;
+    public List<SuspectsList.Suspect> suspects;
 
     public void Start(){
         slider = GameObject.Find("Slider");
@@ -36,7 +37,8 @@ public class FilteringPositions : MonoBehaviour
         }
     }
 
-    public void Filtering(List<SuspectsList.Suspect> suspects){
+    public void FilteringPositionsByTime(){
+        if(suspects == null) return;
         int value = (int)slider.GetComponent<Slider>().value;
         setupMap(suspects, value);
     }
