@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
     private void Start()
     {
         ragdollRigidbody = GetRigidbodyRecursive(root);
-        propDetectionCollider.GetComponent<Collider>();
+        propDetectionCollider = GetComponent<Collider>();
         DisableRagdoll();
     }
 
@@ -18,8 +18,11 @@ public class Character : MonoBehaviour
     {
         if (!other.CompareTag("Prop"))
             return;
+
         EnableRagdoll();
         propDetectionCollider.enabled = false;
+        if (other.TryGetComponent(out Prop prop))
+            prop.OnCharacterTouched();
     }
 
     private void DisableRagdoll()
