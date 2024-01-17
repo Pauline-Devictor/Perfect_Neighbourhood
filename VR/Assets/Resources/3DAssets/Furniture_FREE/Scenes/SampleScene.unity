@@ -1814,7 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 370595033}
+  itemToSpawn: {fileID: 5394822679943433101, guid: 6fded1fe533eff94abf4d9793491605e, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!1 &259852967
 GameObject:
@@ -2690,11 +2690,6 @@ PrefabInstance:
 --- !u!4 &370595032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4998047054848656, guid: 51575859ce98c794abfd0277386c7ce5, type: 3}
-  m_PrefabInstance: {fileID: 370595031}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &370595033 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1720083587289550, guid: 51575859ce98c794abfd0277386c7ce5, type: 3}
   m_PrefabInstance: {fileID: 370595031}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &382820300
@@ -19287,7 +19282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 310188141424077471, guid: 1d4fa4013b9f1ee4e9a25a7be6e78fbc, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!1 &7114770128718716593
 GameObject:
@@ -19468,7 +19463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 329673892763529427, guid: efdf9994bd6b2614fbfbac73276af638, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!1 &7114770128815425040
 GameObject:
@@ -19786,7 +19781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 6577130126452536871, guid: 2d41bd78c95c89047913782e5f67c479, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!1 &7114770128916952666
 GameObject:
@@ -20231,7 +20226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 5214342723274972810, guid: 222a7ef8260fd244885c6b5c623b7bff, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!224 &7114770129137287536
 RectTransform:
@@ -20509,7 +20504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 4676136003990766730, guid: 5d6be7a3f8d77a34aae156761415256c, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!114 &7114770129277092806
 MonoBehaviour:
@@ -21702,7 +21697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 7680607086047663995, guid: 9b47475b230ebae41be628dc728a284e, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!224 &7114770129967630592
 RectTransform:
@@ -22441,7 +22436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6148e776456ec6418bb234a8132e7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 1188114023330046101, guid: 4b718f8fad6c336448067562f6e20623, type: 3}
   spawningTransform: {fileID: 259852968}
 --- !u!222 &7114770130268081336
 CanvasRenderer:
