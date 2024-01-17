@@ -17,7 +17,6 @@ public class SuspectsList : MonoBehaviour
         public string height;
         public string relation;
         public string clothing;
-        public string position;
     }
 
     void Start()

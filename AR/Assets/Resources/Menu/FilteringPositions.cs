@@ -45,6 +45,7 @@ public class FilteringPositions : MonoBehaviour
                 marker.GetComponent<RectTransform>().anchoredPosition = new Vector2(position.x, position.y);                
             }
         }
+        
     }
 
     public void FilteringPositionsByTime(){
