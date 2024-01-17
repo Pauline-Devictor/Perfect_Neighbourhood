@@ -4,26 +4,30 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField] GameObject root;
+    private Collider propDetectionCollider;
     private List<Rigidbody> ragdollRigidbody;
 
     private void Start()
     {
         ragdollRigidbody = GetRigidbodyRecursive(root);
+        propDetectionCollider.GetComponent<Collider>();
         DisableRagdoll();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Prop"))
-            EnableRagdoll();
+        if (!other.CompareTag("Prop"))
+            return;
+        EnableRagdoll();
+        propDetectionCollider.enabled = false;
     }
 
-    private void EnableRagdoll()
+    private void DisableRagdoll()
     {
         ragdollRigidbody.ForEach(rigidbody => rigidbody.constraints = RigidbodyConstraints.FreezeAll);
     }
 
-    private void DisableRagdoll()
+    private void EnableRagdoll()
     {
         ragdollRigidbody.ForEach(rigidbody => rigidbody.constraints = RigidbodyConstraints.None);
     }
