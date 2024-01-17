@@ -11,14 +11,25 @@ public class FilteringSuspects : MonoBehaviour
     
     void Start()
     {
-        suspects = new List<SuspectsList.Suspect>();
+        StartCoroutine(SetupFilters());
+    }
+
+    private void RealStart (){
         filteredSuspects = new List<SuspectsList.Suspect>();
+        
         suspects = suspectsList.suspects;
+
         FindDistinctHairColors();
         PutDistinctHeightSlots();
         FindDistinctClothes();
         FindDistinctGender();
         FindDistinctRelation();
+    }
+
+    IEnumerator SetupFilters()
+    {
+        yield return new WaitForSeconds(0.5f);
+        RealStart();
     }
 
     /* SETUP THE FILTERS */
@@ -111,12 +122,13 @@ public class FilteringSuspects : MonoBehaviour
         FilterByClothes(GameObject.Find("ClothesFilter").GetComponent<TMP_Dropdown>());
         FilterByRelation(GameObject.Find("RelationFilter").GetComponent<TMP_Dropdown>());
         GameObject placeholder = GameObject.Find("ScrollSuspectsNames/Viewport/Content");
-        Debug.Log(placeholder);
         placeholder.GetComponent<TextMeshProUGUI>().text = "";
         foreach(SuspectsList.Suspect suspect in filteredSuspects)
         {
             placeholder.GetComponent<TMPro.TextMeshProUGUI>().text += suspect.name + "\n";
         }
+        GetComponent<FilteringPositions>().suspects = filteredSuspects;
+        GetComponent<FilteringPositions>().FilteringPositionsByTime();
     }
 
     private void FilterByHairColor(TMP_Dropdown dropdown)
