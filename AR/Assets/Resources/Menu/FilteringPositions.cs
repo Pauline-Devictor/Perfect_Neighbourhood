@@ -24,15 +24,25 @@ public class FilteringPositions : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        Dictionary<string, int> count = new Dictionary<string, int>();
+        foreach(string location in locations.Keys){
+            count.Add(location, 0);
+        }
         foreach(SuspectsList.Suspect suspect in suspects){
             if(locations.ContainsKey(suspect.positions[timeSlot])){
+                count[suspect.positions[timeSlot]] += 1;
+                Vector3 position = locations[suspect.positions[timeSlot]];
                 GameObject marker = Instantiate(suspectMarker);
+                marker.name = suspect.name;
                 marker.transform.SetParent(map.transform);
-                marker.transform.localPosition = locations[suspect.positions[timeSlot]];
+                if(count[suspect.positions[timeSlot]] > 1){
+                    position.x += Random.Range(-10f, 10f);
+                    position.y += Random.Range(-10f, 10f);
+                }
                 marker.transform.localScale = new Vector3(1, 1, 1);
                 marker.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
                 marker.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
-                marker.GetComponent<RectTransform>().anchoredPosition = new Vector2(locations[suspect.positions[timeSlot]].x, locations[suspect.positions[timeSlot]].y);
+                marker.GetComponent<RectTransform>().anchoredPosition = new Vector2(position.x, position.y);                
             }
         }
     }
