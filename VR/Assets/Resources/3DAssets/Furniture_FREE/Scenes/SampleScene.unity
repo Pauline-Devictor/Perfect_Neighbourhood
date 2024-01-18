@@ -7770,7 +7770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3454091965327598982, guid: 9277481a59fc53a438841bb739697a9d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.69
+      value: 1.71
       objectReference: {fileID: 0}
     - target: {fileID: 3454091965327598982, guid: 9277481a59fc53a438841bb739697a9d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7778,7 +7778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3454091965327598982, guid: 9277481a59fc53a438841bb739697a9d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.622
       objectReference: {fileID: 0}
     - target: {fileID: 3454091965327598982, guid: 9277481a59fc53a438841bb739697a9d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7857,12 +7857,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131222268}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.74834
+  m_Radius: 0.33682555
+  m_Height: 1.2902004
   m_Direction: 1
-  m_Center: {x: 0, y: -0.3741701, z: 0}
+  m_Center: {x: 0, y: -0.1451003, z: 0.16317445}
 --- !u!114 &1131222271
 MonoBehaviour:
   m_ObjectHideFlags: 0
