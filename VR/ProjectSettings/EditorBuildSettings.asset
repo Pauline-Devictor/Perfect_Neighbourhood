@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/KilianTestCool.unity
     guid: 049817bdeaa04ef4888a191af09773d2
+  - enabled: 0
+    path: Assets/Oculus/Interaction/Samples/Scenes/Examples/PokeExamples.unity
+    guid: ada3086bde0ab18459589e22d8d9e182
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9bc376c1d961c7c43a128ac56b390a48, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 8d0f6c29305575d44af43653f67853e2, type: 2}
