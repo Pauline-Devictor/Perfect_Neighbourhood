@@ -31,6 +31,7 @@ public class ObjectsList : MonoBehaviour
             obj.name = objectsArray[i, 0];
             obj.position = objectsArray[i, 1];
             obj.time = convertToDigit(objectsArray[i, 2]);
+            objectSus.Add(obj);
         }
     }
     
