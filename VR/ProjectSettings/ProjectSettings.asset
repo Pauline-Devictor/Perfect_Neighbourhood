@@ -139,8 +139,6 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 11400000, guid: 9092e3a15a362504b8cd2f3d2d85ae7d, type: 2}
   - {fileID: 11400000, guid: 57389635e9ebff74dbc3b328d99d2b37, type: 2}
-  - {fileID: 5440443919290030058, guid: 8d0f6c29305575d44af43653f67853e2, type: 2}
-  - {fileID: 11400000, guid: 9bc376c1d961c7c43a128ac56b390a48, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -805,7 +803,12 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -820,11 +823,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 36be4087-f15d-4e97-99a0-6b7f15a1e33a
+  cloudProjectId: 4f7e50e3-81d2-41be-8964-265d762cbab5
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: VR 2023-12-13_09-44-43
-  organizationId: paulinedevictor
+  projectName: VR
+  organizationId: mrkilol69
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
