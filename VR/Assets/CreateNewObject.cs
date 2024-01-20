@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CreateNewObject : MonoBehaviour
 {
@@ -12,7 +9,7 @@ public class CreateNewObject : MonoBehaviour
     public void CreateNew()
     {
         count++;
-        if (itemToSpawn && spawningTransform && count%2 == 1)
+        if (itemToSpawn && spawningTransform && count%2 == 0 && count !=0)
         {
             Instantiate(itemToSpawn, spawningTransform);
 
