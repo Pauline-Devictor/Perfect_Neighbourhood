@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18029127, g: 0.22572401, b: 0.3069303, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2552,6 +2552,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &352286183
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352286166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.14101867
+  m_Center: {x: -0.0016036332, y: 0.086083755, z: 0.0073618144}
 --- !u!1001 &370595031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5972,6 +5985,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &753413501
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753413484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3313099
+  m_Center: {x: 0.109723866, y: 0.041895986, z: -0.01200217}
 --- !u!1001 &755136289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7048,6 +7074,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &915209520
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915209503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.20785326
+  m_Center: {x: 4.8577373e-18, y: -0.0013183951, z: 0.06814958}
 --- !u!1001 &918889471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8261,6 +8300,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 743e832a8bb6eb947a426d4eea3d4179, type: 3}
+--- !u!1 &1011867391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454091965327899044, guid: 9277481a59fc53a438841bb739697a9d, type: 3}
+  m_PrefabInstance: {fileID: 1131222265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1011867392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3454091965327598984, guid: 9277481a59fc53a438841bb739697a9d, type: 3}
+  m_PrefabInstance: {fileID: 1131222265}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1011867393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011867391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cce4c77dc4831c4da6a4666f1b449c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrCamera: {fileID: 1011867392}
 --- !u!1 &1016441507
 GameObject:
   m_ObjectHideFlags: 0
@@ -10883,6 +10945,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1367819335
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367819318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.22128068
+  m_Center: {x: -0.024585871, y: -0.004071653, z: 0.019918365}
 --- !u!1 &1390692854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12766,6 +12841,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1726681080
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709309226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2905896
+  m_Center: {x: -0.000000024835266, y: 0.21008658, z: -0.00000034790787}
 --- !u!1001 &1732118916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19476,12 +19564,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
-  m_renderer: {fileID: 2064165942400044848}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 1
+  m_renderer: {fileID: 2064165942400044848}
+  m_maskType: 0
 --- !u!1 &2064165942400044853
 GameObject:
   m_ObjectHideFlags: 0
