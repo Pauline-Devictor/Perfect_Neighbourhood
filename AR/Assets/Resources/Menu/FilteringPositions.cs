@@ -16,7 +16,7 @@ public class FilteringPositions : MonoBehaviour
     public void Start(){
         slider = GameObject.Find("Slider");
         locations = GetComponent<Locations>().locations;
-        placeholder = GameObject.Find("ScrollObjects/Viewport/Content");
+        placeholder = GameObject.Find("ScrollObjects/Viewport/Objects");
         setupMap(null, 0);
     }
 
@@ -51,9 +51,7 @@ public class FilteringPositions : MonoBehaviour
                 }
         }
         placeholder.GetComponent<TextMeshProUGUI>().text = "pan\n";
-        Debug.Log(objs);
         foreach(ObjectsList.ObjectSus obj in objs){
-            Debug.Log(obj.name + " " + obj.position + " " + obj.time);
             if(locations.ContainsKey(obj.position) && obj.time == timeSlot){
                 count[obj.position] += 1;
                 Vector3 position = locations[obj.position];

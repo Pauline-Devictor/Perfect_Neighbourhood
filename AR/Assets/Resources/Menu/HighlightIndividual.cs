@@ -17,19 +17,27 @@ public class HighlightIndividual : MonoBehaviour
             scrollContent.text = scrollContent.text.Replace("</b></color>", "");
             scrollContent.text = scrollContent.text.Replace(fullName, "<color=red><b>" + fullName + "</b></color>");
             GameObject map = GameObject.Find("MapMenu");
+            GameObject found = null;
             foreach (Transform child in map.transform) {
                 if(child.gameObject.name != "Image"){
                     if(child.gameObject.name == fullName){
                         child.gameObject.GetComponent<RawImage>().color = Color.red;
-                    } else {
-                        child.gameObject.GetComponent<RawImage>().color = Color.cyan;                    }
+                        child.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                        found = child.gameObject;
+                    } else if(scrollContent.text.Contains(child.gameObject.name)){
+                        child.gameObject.GetComponent<RawImage>().color = Color.cyan;
+                        child.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+                    }
                 }
             }
             if(fullName == "pan"){
-                map.transform.Find("Image").transform.Find("pan").gameObject.GetComponent<RawImage>().color = Color.red;
+                found = map.transform.Find("Image").transform.Find("pan").gameObject;
+                found.GetComponent<RawImage>().color = Color.red;
+                
             } else {
                 map.transform.Find("Image").transform.Find("pan").gameObject.GetComponent<RawImage>().color = Color.cyan;
             }
+            if(found != null) found.transform.SetAsLastSibling();
         }
     }
 }
