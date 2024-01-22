@@ -6,12 +6,14 @@ public class Character : MonoBehaviour
     [SerializeField] GameObject root;
     private Collider propDetectionCollider;
     private List<Rigidbody> ragdollRigidbody;
+    private Vector3 initialPosition;
 
     private void Start()
     {
         ragdollRigidbody = GetRigidbodyRecursive(root);
         propDetectionCollider = GetComponent<Collider>();
         DisableRagdoll();
+        initialPosition = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,11 +30,13 @@ public class Character : MonoBehaviour
     private void DisableRagdoll()
     {
         ragdollRigidbody.ForEach(rigidbody => rigidbody.constraints = RigidbodyConstraints.FreezeAll);
+
     }
 
     private void EnableRagdoll()
     {
         ragdollRigidbody.ForEach(rigidbody => rigidbody.constraints = RigidbodyConstraints.None);
+        Invoke("ResetRagdoll", 10f);
     }
 
     private List<Rigidbody> GetRigidbodyRecursive(GameObject obj)
@@ -46,6 +50,12 @@ public class Character : MonoBehaviour
             rigidbody.AddRange(GetRigidbodyRecursive(child.gameObject));
 
         return rigidbody;
+    }
+
+    private void ResetRagdoll()
+    {
+        DisableRagdoll();
+        gameObject.transform.position = initialPosition;
     }
 
 
