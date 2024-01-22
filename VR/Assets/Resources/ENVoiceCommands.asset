@@ -20,9 +20,9 @@ MonoBehaviour:
     isPrivate: 1
     createdAt: 2023-12-27T12:12:02-0800
     trainingStatus: 1
-    lastTrainDuration: 107
-    lastTrainedAt: 2023-12-27T12:33:30-0800
-    nextTrainAt: 2023-12-27T12:31:43-0800
+    lastTrainDuration: 77
+    lastTrainedAt: 2024-01-10T00:44:50-0800
+    nextTrainAt: 2024-01-10T00:43:33-0800
     intents:
     - id: 3697350743882316
       name: hour_number
@@ -91,18 +91,23 @@ MonoBehaviour:
       keywords:
       - keyword: 13
         synonyms:
+        - 1
         - 13
       - keyword: 14
         synonyms:
+        - 2
         - 14
       - keyword: 15
         synonyms:
+        - 3
         - 15
       - keyword: 16
         synonyms:
+        - 4
         - 16
       - keyword: 17
         synonyms:
+        - 5
         - 17
     - name: lightOffStatus
       id: 678873680899940
