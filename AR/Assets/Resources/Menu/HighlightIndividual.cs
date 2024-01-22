@@ -22,11 +22,11 @@ public class HighlightIndividual : MonoBehaviour
                 if(child.gameObject.name != "Image"){
                     if(child.gameObject.name == fullName){
                         child.gameObject.GetComponent<RawImage>().color = Color.red;
-                        child.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                        child.gameObject.transform.localScale = new Vector3(1.8368145f, 4.751805f, 6.249999f);
                         found = child.gameObject;
                     } else if(scrollContent.text.Contains(child.gameObject.name)){
                         child.gameObject.GetComponent<RawImage>().color = Color.cyan;
-                        child.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+                        child.gameObject.transform.localScale = new Vector3(1.224543f, 3.16787f, 0.4166666f);
                     }
                 }
             }

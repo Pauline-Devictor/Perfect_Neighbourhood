@@ -11,6 +11,5 @@ public class MenuInteractions : MonoBehaviour
     {
         menuPanel.SetActive(menuPanel.activeSelf ? false : true);
         GameObject.Find("City").GetComponent<CityInteractions>().enabled = menuPanel.activeSelf ? false : true;
-        gameObject.transform.Find("BackGround").gameObject.SetActive(menuPanel.activeSelf ? true : false);
     }
 }

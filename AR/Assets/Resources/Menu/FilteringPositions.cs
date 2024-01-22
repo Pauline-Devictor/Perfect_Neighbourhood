@@ -37,38 +37,37 @@ public class FilteringPositions : MonoBehaviour
             if(locations.ContainsKey(suspect.positions[timeSlot])){
                 count[suspect.positions[timeSlot]] += 1;
                 Vector3 position = locations[suspect.positions[timeSlot]];
-                GameObject marker = Instantiate(suspectMarker);
-                marker.name = suspect.name;
-                marker.transform.SetParent(map.transform);
                 if(count[suspect.positions[timeSlot]] > 1){
                     position.x += Random.Range(-10f, 10f);
-                    position.y += Random.Range(-20f, 20f);
+                    position.y += Random.Range(-5f, 5f);
                 }
-                marker.transform.localScale = new Vector3(1, 1, 1);
-                marker.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
-                marker.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
-                marker.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(position.x, position.y, -2f);
-                }
+                createMarker(suspectMarker, map, position, suspect.name);
+            }
         }
         placeholder.GetComponent<TextMeshProUGUI>().text = "pan\n";
         foreach(ObjectsList.ObjectSus obj in objs){
             if(locations.ContainsKey(obj.position) && obj.time == timeSlot){
                 count[obj.position] += 1;
                 Vector3 position = locations[obj.position];
-                GameObject marker = Instantiate(objMarker);
-                marker.name = obj.name;
-                marker.transform.SetParent(map.transform);
                 if(count[obj.position] > 1){
                     position.x += Random.Range(-10f, 10f);
-                    position.y += Random.Range(-20f, 20f);
+                    position.y += Random.Range(-5f, 5f);
                 }
-                marker.transform.localScale = new Vector3(1, 1, 1);
-                marker.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
-                marker.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
-                marker.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(position.x, position.y, -2f);               
+                createMarker(objMarker, map, position, obj.name);
                 placeholder.GetComponent<TMPro.TextMeshProUGUI>().text += obj.name + "\n";
             }
         }
+    }
+
+    private void createMarker(GameObject marker, GameObject map, Vector3 position, string name){
+        GameObject newMarker = Instantiate(marker);
+        newMarker.name = name;
+        newMarker.transform.SetParent(map.transform);
+        newMarker.GetComponent<RectTransform>().localScale = new Vector3(1.224543f, 3.16787f, 0.4166666f);
+        newMarker.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
+        newMarker.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
+        newMarker.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(position.x, position.y, -2f);
+        newMarker.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void FilteringPositionsByTime(){
