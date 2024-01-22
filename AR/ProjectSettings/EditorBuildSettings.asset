@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 8ba1a817a88ebad43a94623c0d8ca478
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/MarkerBased.unity
+    guid: fdf4c36a086fa4ffa93a3446ce0bbbe2
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f514508e854f33345b1a3a374f2e52d7, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ac37749e9d0065a46aa15f14f8e4ba0d, type: 2}
