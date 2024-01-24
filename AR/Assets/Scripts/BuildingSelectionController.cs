@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class BuildingSelectionController : MonoBehaviour
 {
+    public TextAsset suspectCsvFile;
+    public TextAsset objectCsvFile;
     public TextMeshPro BuildingName;
     public GameObject BuildingDetails;
+    public TextMeshPro SuspectListContainer;
     private SelectableBuilding selectedBuilding;
     public Camera ARCamera;
     private bool isInfoMoving = false;
     float t = 0f;
     public float Speed = 100.0f;
+    private List<Suspect> suspects;
 
     // Start is called before the first frame update
     void Start()
     {
-        selectedBuilding = null;
+        DataStore dataStore = GameObject.Find("DataStore").GetComponent<DataStore>();
+        suspects = dataStore.Suspects;
         BuildingDetails.SetActive(false);
     }
 
@@ -98,6 +103,7 @@ public class BuildingSelectionController : MonoBehaviour
         selectedBuilding = building;
         selectedBuilding.IsSelected = true;
         BuildingName.text = selectedBuilding.BuildingName;
+        ShowSuspectsForBuilding(selectedBuilding);
         if (placeDirectly) RepositionBuildingInfo();
         BuildingDetails.SetActive(true);
         t = 0f;
@@ -106,5 +112,82 @@ public class BuildingSelectionController : MonoBehaviour
     void RepositionBuildingInfo()
     {
         BuildingDetails.transform.position = selectedBuilding.transform.position + new Vector3(0, selectedBuilding.transform.GetComponent<Collider>().bounds.size.y, 0);
+    }
+
+    List<Suspect> GetSuspectsForBuilding(string buildingName)
+    {
+        SuspectListContainer.text = suspects.Count.ToString();
+        List<Suspect> suspectsForBuilding = new List<Suspect>();
+        foreach (Suspect suspect in suspects)
+        {
+            foreach (string position in suspect.positions)
+            {
+                SuspectListContainer.text = position;
+
+                if (position == buildingName)
+                {
+                    suspectsForBuilding.Add(suspect);
+                }
+                break;
+            }
+        }
+        return suspectsForBuilding;
+    }
+
+    int indexToHour(int index)
+    {
+        return index + 13;
+    }
+
+    string rangesToString(List<int[]> ranges)
+    {
+        string result = "";
+        foreach (int[] range in ranges)
+        {
+            result += range[0].ToString() + "h - " + range[1].ToString() + "h, ";
+        }
+        return result;
+    }
+
+    string GetPresenceRangeForSuspectInBuilding(Suspect suspect, string buildingName)
+    {
+        var ranges = new List<int[]>();
+        int[] currentRange = new int[2];
+        for (int i = 0; i < suspect.positions.Length; i++)
+        {
+            if (suspect.positions[i] == buildingName)
+            {
+                if (currentRange[0] == 0)
+                {
+                    currentRange[0] = indexToHour(i);
+                }
+                currentRange[1] = indexToHour(i);
+            }
+            else
+            {
+                if (currentRange[0] != 0)
+                {
+                    ranges.Add(currentRange);
+                    currentRange = new int[2];
+                }
+            }
+        }
+        if (currentRange[0] != 0)
+        {
+            ranges.Add(currentRange);
+        }
+
+        return rangesToString(ranges);
+    }
+
+    void ShowSuspectsForBuilding(SelectableBuilding building)
+    {
+        List<Suspect> suspectsForBuilding = GetSuspectsForBuilding(building.BuildingName);
+        string suspectList = "";
+        foreach (Suspect suspect in suspectsForBuilding)
+        {
+            suspectList += suspect.name + ": " + GetPresenceRangeForSuspectInBuilding(suspect, building.BuildingName) + "\n";
+        }
+        SuspectListContainer.text = suspectList;
     }
 }
