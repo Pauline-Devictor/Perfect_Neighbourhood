@@ -64,6 +64,29 @@ public class BuildingSelectionController : MonoBehaviour
                 }
             }
         }
+        else if (Input.touchCount == 2)
+        {
+            Touch[] touches = Input.touches;
+            if (touches[0].phase == TouchPhase.Began || touches[1].phase == TouchPhase.Began)
+            {
+                SelectableBuilding building1 = GetHitBuilding(touches[0]);
+                SelectableBuilding building2 = GetHitBuilding(touches[1]);
+                if (building1 != null && building2 != null)
+                {
+                    if (building1.BuildingName != building2.BuildingName)
+                    {
+                        selectedBuilding = building1;
+                        TravelTimeInfo travelTimeInfo = GetTravelTimesForBuildings(building1.BuildingName, building2.BuildingName);
+                        string travelTimes = building1.BuildingName + " to " + building2.BuildingName + "\n";
+                        travelTimes += "Bus: " + travelTimeInfo.bus.ToString() + " min\n";
+                        travelTimes += "Car: " + travelTimeInfo.car.ToString() + " min\n";
+                        travelTimes += "Walk: " + travelTimeInfo.walk.ToString() + " min\n";
+                        BuildingName.text = travelTimes;
+                        SuspectListContainer.text = "";
+                    }
+                }
+            }
+        }
 
 
         // Repositioning the building info
@@ -112,6 +135,20 @@ public class BuildingSelectionController : MonoBehaviour
     void RepositionBuildingInfo()
     {
         BuildingDetails.transform.position = selectedBuilding.transform.position + new Vector3(0, selectedBuilding.transform.GetComponent<Collider>().bounds.size.y, 0);
+    }
+
+    SelectableBuilding GetHitBuilding(Touch touch)
+    {
+        Ray ray = ARCamera.ScreenPointToRay(touch.position);
+        RaycastHit hitObject;
+        if (Physics.Raycast(ray, out hitObject))
+        {
+            return hitObject.transform.GetComponent<SelectableBuilding>();
+        }
+        else
+        {
+            return null;
+        }
     }
 
     List<Suspect> GetSuspectsForBuilding(string buildingName)
@@ -189,5 +226,16 @@ public class BuildingSelectionController : MonoBehaviour
             suspectList += suspect.name + ": " + GetPresenceRangeForSuspectInBuilding(suspect, building.BuildingName) + "\n";
         }
         SuspectListContainer.text = suspectList;
+    }
+
+    TravelTimeInfo GetTravelTimesForBuildings(string building1, string building2)
+    {
+        float distance = Vector3.Distance(GameObject.Find(building1).transform.position, GameObject.Find(building2).transform.position) * 10;
+        TravelTimeInfo travelTimeInfo = new TravelTimeInfo();
+        // the idea is to get fake but credible travel times by bus, car and walking
+        travelTimeInfo.bus = (int)(distance * 2);
+        travelTimeInfo.car = (int)(distance * 1.1);
+        travelTimeInfo.walk = (int)(distance * 5);
+        return travelTimeInfo;
     }
 }
