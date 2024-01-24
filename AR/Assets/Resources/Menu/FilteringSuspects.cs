@@ -5,19 +5,20 @@ using TMPro;
 
 public class FilteringSuspects : MonoBehaviour
 {
-    public SuspectList suspectsList;
     List<Suspect> suspects;
     public List<Suspect> filteredSuspects;
-    
+
     void Start()
     {
         StartCoroutine(SetupFilters());
     }
 
-    private void RealStart (){
+    private void RealStart()
+    {
+        RetrieveData retrieveData = GetComponent<RetrieveData>();
         filteredSuspects = new List<Suspect>();
-        
-        suspects = suspectsList.suspects;
+
+        suspects = retrieveData.Suspects;
 
         FindDistinctHairColors();
         PutDistinctHeightSlots();
@@ -37,9 +38,9 @@ public class FilteringSuspects : MonoBehaviour
     void FindDistinctHairColors()
     {
         List<string> hairColors = new List<string>();
-        foreach(Suspect suspect in suspects)
+        foreach (Suspect suspect in suspects)
         {
-            if(!hairColors.Contains(suspect.hair))
+            if (!hairColors.Contains(suspect.hair))
             {
                 hairColors.Add(suspect.hair);
             }
@@ -50,9 +51,9 @@ public class FilteringSuspects : MonoBehaviour
     void PutDistinctHeightSlots()
     {
         List<string> heights = new List<string>();
-        foreach(Suspect suspect in suspects)
+        foreach (Suspect suspect in suspects)
         {
-            if(!heights.Contains(suspect.height))
+            if (!heights.Contains(suspect.height))
             {
                 heights.Add(suspect.height);
             }
@@ -62,34 +63,36 @@ public class FilteringSuspects : MonoBehaviour
         int min = int.Parse(heights[0]);
         int max = int.Parse(heights[heights.Count - 1]);
         int i;
-        for(i = min + 5; i <= max; i = i + 5)
+        for (i = min + 5; i <= max; i = i + 5)
         {
             heightsSlots.Add((i - 5).ToString() + " - " + i.ToString());
         }
-        if(i - 5 != max)
+        if (i - 5 != max)
         {
             heightsSlots.Add((i - 5).ToString() + " - " + max.ToString());
         }
         GameObject.Find("HeightFilter").GetComponent<TMP_Dropdown>().AddOptions(heightsSlots);
     }
 
-    void FindDistinctGender(){
+    void FindDistinctGender()
+    {
         List<string> genders = new List<string>();
-        foreach(Suspect suspect in suspects)
+        foreach (Suspect suspect in suspects)
         {
-            if(!genders.Contains(suspect.gender)){
+            if (!genders.Contains(suspect.gender))
+            {
                 genders.Add(suspect.gender);
             }
         }
-         GameObject.Find("GenderFilter").GetComponent<TMP_Dropdown>().AddOptions(genders);
+        GameObject.Find("GenderFilter").GetComponent<TMP_Dropdown>().AddOptions(genders);
     }
 
     void FindDistinctClothes()
     {
         List<string> clothings = new List<string>();
-        foreach(Suspect suspect in suspects)
+        foreach (Suspect suspect in suspects)
         {
-            if(!clothings.Contains(suspect.clothing))
+            if (!clothings.Contains(suspect.clothing))
             {
                 clothings.Add(suspect.clothing);
             }
@@ -100,9 +103,9 @@ public class FilteringSuspects : MonoBehaviour
     void FindDistinctRelation()
     {
         List<string> relations = new List<string>();
-        foreach(Suspect suspect in suspects)
+        foreach (Suspect suspect in suspects)
         {
-            if(!relations.Contains(suspect.relation))
+            if (!relations.Contains(suspect.relation))
             {
                 relations.Add(suspect.relation);
             }
@@ -123,7 +126,7 @@ public class FilteringSuspects : MonoBehaviour
         FilterByRelation(GameObject.Find("RelationFilter").GetComponent<TMP_Dropdown>());
         GameObject placeholder = GameObject.Find("ScrollSuspectsNames/Viewport/Suspects");
         placeholder.GetComponent<TextMeshProUGUI>().text = "";
-        foreach(Suspect suspect in filteredSuspects)
+        foreach (Suspect suspect in filteredSuspects)
         {
             placeholder.GetComponent<TMPro.TextMeshProUGUI>().text += suspect.name + "\n";
         }
@@ -133,7 +136,7 @@ public class FilteringSuspects : MonoBehaviour
 
     private void FilterByHairColor(TMP_Dropdown dropdown)
     {
-        if(dropdown.value == 0) return;
+        if (dropdown.value == 0) return;
 
         string hairColor = dropdown.options[dropdown.value].text;
         filteredSuspects.RemoveAll(suspect => suspect.hair != hairColor);
@@ -141,7 +144,7 @@ public class FilteringSuspects : MonoBehaviour
 
     private void FilterByHeight(TMP_Dropdown dropdown)
     {
-        if(dropdown.value == 0) return;
+        if (dropdown.value == 0) return;
         string height = dropdown.options[dropdown.value].text;
         List<string> heightRange = new List<string>();
         heightRange.AddRange(height.Split(' '));
@@ -150,23 +153,23 @@ public class FilteringSuspects : MonoBehaviour
 
     private void FilterByGender(TMP_Dropdown dropdown)
     {
-        if(dropdown.value == 0) return;
-        
+        if (dropdown.value == 0) return;
+
         string gender = dropdown.options[dropdown.value].text;
         filteredSuspects.RemoveAll(suspect => suspect.gender != gender);
     }
 
     private void FilterByClothes(TMP_Dropdown dropdown)
     {
-        if(dropdown.value == 0) return;
-        
+        if (dropdown.value == 0) return;
+
         string clothes = dropdown.options[dropdown.value].text;
         filteredSuspects.RemoveAll(suspect => suspect.clothing != clothes);
     }
 
     private void FilterByRelation(TMP_Dropdown dropdown)
     {
-        if(dropdown.value == 0) return;
+        if (dropdown.value == 0) return;
         string relation = dropdown.options[dropdown.value].text;
         filteredSuspects.RemoveAll(suspect => suspect.relation != relation);
     }

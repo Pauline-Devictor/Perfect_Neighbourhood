@@ -8,13 +8,6 @@ public class ObjectsList : MonoBehaviour
     public List<ObjectSus> objectSus;
     private string[,] objectsArray;
 
-    public class ObjectSus
-    {
-        public string name;
-        public string position;
-        public int time;
-    }
-    
     void Start()
     {
         RetrieveData retrieveData = GetComponent<RetrieveData>();
@@ -25,7 +18,7 @@ public class ObjectsList : MonoBehaviour
 
     public void buildList()
     {
-        for(int i = 1; i < objectsArray.GetLength(0) - 1; i++)
+        for (int i = 1; i < objectsArray.GetLength(0) - 1; i++)
         {
             ObjectSus obj = new ObjectSus();
             obj.name = objectsArray[i, 0];
@@ -34,9 +27,11 @@ public class ObjectsList : MonoBehaviour
             objectSus.Add(obj);
         }
     }
-    
-    public int convertToDigit(string hour){
-        switch(hour){
+
+    public int convertToDigit(string hour)
+    {
+        switch (hour)
+        {
             case "12h":
                 return 0;
             case "13h":
@@ -53,5 +48,5 @@ public class ObjectsList : MonoBehaviour
                 return -1;
         }
     }
-    
+
 }

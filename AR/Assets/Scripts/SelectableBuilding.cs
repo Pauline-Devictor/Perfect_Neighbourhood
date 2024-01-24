@@ -26,7 +26,7 @@ public class SelectableBuilding : MonoBehaviour
         outline = gameObject.AddComponent<Outline>();
 
         outline.OutlineMode = Outline.Mode.OutlineAll;
-        outline.OutlineColor = Color.yellow;
+        outline.OutlineColor = Color.magenta;
         outline.OutlineWidth = 5f;
         outline.enabled = false;
         buildingName = gameObject.name;

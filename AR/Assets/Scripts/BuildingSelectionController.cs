@@ -7,16 +7,19 @@ public class BuildingSelectionController : MonoBehaviour
 {
     public TextMeshPro BuildingName;
     public GameObject BuildingDetails;
+    public TextMeshPro SuspectListContainer;
     private SelectableBuilding selectedBuilding;
     public Camera ARCamera;
     private bool isInfoMoving = false;
     float t = 0f;
     public float Speed = 100.0f;
+    private List<Suspect> suspects;
 
     // Start is called before the first frame update
     void Start()
     {
-        selectedBuilding = null;
+        RetrieveData retrieveData = GetComponent<RetrieveData>();
+        suspects = retrieveData.Suspects;
         BuildingDetails.SetActive(false);
     }
 
@@ -98,6 +101,7 @@ public class BuildingSelectionController : MonoBehaviour
         selectedBuilding = building;
         selectedBuilding.IsSelected = true;
         BuildingName.text = selectedBuilding.BuildingName;
+        ShowSuspectsForBuilding(selectedBuilding);
         if (placeDirectly) RepositionBuildingInfo();
         BuildingDetails.SetActive(true);
         t = 0f;
@@ -106,5 +110,36 @@ public class BuildingSelectionController : MonoBehaviour
     void RepositionBuildingInfo()
     {
         BuildingDetails.transform.position = selectedBuilding.transform.position + new Vector3(0, selectedBuilding.transform.GetComponent<Collider>().bounds.size.y, 0);
+    }
+
+    public List<Suspect> GetSuspectsForBuilding(string buildingName)
+    {
+        SuspectListContainer.text = suspects.Count.ToString();
+        List<Suspect> suspectsForBuilding = new List<Suspect>();
+        foreach (Suspect suspect in suspects)
+        {
+            foreach (string position in suspect.positions)
+            {
+                SuspectListContainer.text = position;
+
+                if (position == buildingName)
+                {
+                    suspectsForBuilding.Add(suspect);
+                }
+                break;
+            }
+        }
+        return suspectsForBuilding;
+    }
+
+    public void ShowSuspectsForBuilding(SelectableBuilding building)
+    {
+        List<Suspect> suspectsForBuilding = GetSuspectsForBuilding(building.BuildingName);
+        string suspectList = "";
+        foreach (Suspect suspect in suspectsForBuilding)
+        {
+            suspectList += suspect.name + "\n";
+        }
+        SuspectListContainer.text = suspectList;
     }
 }
