@@ -395,7 +395,7 @@ PlayerSettings:
   - m_BuildTarget: BJMSupport
     m_GraphicsJobs: 1
   - m_BuildTarget: LinuxStandaloneSupport
-    m_GraphicsJobs: 1
+    m_GraphicsJobs: 0
   - m_BuildTarget: PS4Player
     m_GraphicsJobs: 1
   - m_BuildTarget: iOSSupport
@@ -824,11 +824,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: b7bebdb4-67d9-4a7c-b771-beaa9e062d56
+  cloudProjectId: ab7c1191-4d2b-4d75-ae5f-f13bf985e5bc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: VR (1)
-  organizationId: paulinedevictor
+  organizationId: mrkilol69
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
