@@ -14,7 +14,7 @@ public class BuildingSelectionController : MonoBehaviour
     void Start()
     {
         selectedBuilding = null;
-        BuildingName.text = "Bonjour";
+        BuildingDetails.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,9 +44,11 @@ public class BuildingSelectionController : MonoBehaviour
                         {
                             BuildingDetails.SetActive(true);
                         }
+                        Collider collider = hitObject.transform.GetComponent<Collider>();
                         selectedBuilding = hitObject.transform.GetComponent<SelectableBuilding>();
                         selectedBuilding.IsSelected = true;
                         BuildingName.text = selectedBuilding.BuildingName;
+                        BuildingDetails.transform.position = hitObject.transform.position + new Vector3(0, collider.bounds.size.y, 0);
                     }
                 }
             }
