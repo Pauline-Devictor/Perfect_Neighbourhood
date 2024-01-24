@@ -10,8 +10,8 @@ public class BuildingSelectionController : MonoBehaviour
     private SelectableBuilding selectedBuilding;
     public Camera ARCamera;
     private bool isInfoMoving = false;
-    public int interpolationFramesCount = 45; // Number of frames to completely interpolate between the 2 positions
-    int elapsedFrames = 0;
+    float t = 0f;
+    public float Speed = 100.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,21 +23,8 @@ public class BuildingSelectionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInfoMoving)
-        {
-            // function easeOutCubic(x: number): number {
-            //     return 1 - Math.pow(1 - x, 3);
-            // }
-            float interpolationRatio = 1 - Mathf.Pow(1 - (float)elapsedFrames / interpolationFramesCount, 3);
-            Vector3 interpolatedPosition = Vector3.Lerp(BuildingDetails.transform.position, selectedBuilding.transform.position + new Vector3(0, selectedBuilding.GetComponent<Collider>().bounds.size.y, 0), interpolationRatio);
-            BuildingDetails.transform.position = interpolatedPosition;
-            elapsedFrames = (elapsedFrames + 1) % (interpolationFramesCount + 1);  // reset elapsedFrames to zero after it reached (interpolationFramesCount + 1)
-            if (elapsedFrames == 0)
-            {
-                isInfoMoving = false;
-            }
-        }
-        if (Input.touchCount > 0)
+        // Selecting a building
+        if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
@@ -52,28 +39,72 @@ public class BuildingSelectionController : MonoBehaviour
                         if (selectedBuilding != null && selectedBuilding.BuildingName == building.BuildingName)
                         {
                             BuildingDetails.SetActive(false);
+                            selectedBuilding.IsSelected = false;
                             selectedBuilding = null;
                         }
                         else
                         {
-                            Collider collider = hitObject.transform.GetComponent<Collider>();
                             if (selectedBuilding != null)
                             {
                                 selectedBuilding.IsSelected = false;
                                 isInfoMoving = true;
+                                SelectBuilding(building);
                             }
                             else
                             {
-                                BuildingDetails.SetActive(true);
-                                BuildingDetails.transform.position = hitObject.transform.position + new Vector3(0, collider.bounds.size.y, 0);
+                                SelectBuilding(building, true);
                             }
-                            selectedBuilding = building;
-                            selectedBuilding.IsSelected = true;
-                            BuildingName.text = selectedBuilding.BuildingName;
                         }
                     }
                 }
             }
         }
+
+
+        // Repositioning the building info
+        if (selectedBuilding != null && !isInfoMoving)
+        {
+            RepositionBuildingInfo();
+        }
+
+        // Rotating the building info to face the camera
+        if (selectedBuilding != null)
+        {
+            var newRotation = BuildingDetails.transform.rotation;
+            newRotation.y = -ARCamera.transform.rotation.y;
+            BuildingDetails.transform.rotation = newRotation;
+        }
+
+        // Animation for moving the building info
+        if (isInfoMoving)
+        {
+            t += Time.deltaTime * Speed / 100;
+            if (t < 1f)
+            {
+                float interpolationRatio = 1 - Mathf.Pow(1 - t, 3);
+                Vector3 interpolatedPosition = Vector3.Lerp(BuildingDetails.transform.position, selectedBuilding.transform.position + new Vector3(0, selectedBuilding.GetComponent<Collider>().bounds.size.y, 0), interpolationRatio);
+                BuildingDetails.transform.position = interpolatedPosition;
+            }
+            else
+            {
+                isInfoMoving = false;
+                t = 0f;
+            }
+        }
+    }
+
+    void SelectBuilding(SelectableBuilding building, bool placeDirectly = false)
+    {
+        selectedBuilding = building;
+        selectedBuilding.IsSelected = true;
+        BuildingName.text = selectedBuilding.BuildingName;
+        if (placeDirectly) RepositionBuildingInfo();
+        BuildingDetails.SetActive(true);
+        t = 0f;
+    }
+
+    void RepositionBuildingInfo()
+    {
+        BuildingDetails.transform.position = selectedBuilding.transform.position + new Vector3(0, selectedBuilding.transform.GetComponent<Collider>().bounds.size.y, 0);
     }
 }
