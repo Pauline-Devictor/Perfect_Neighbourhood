@@ -5,9 +5,9 @@ using TMPro;
 
 public class FilteringSuspects : MonoBehaviour
 {
-    public SuspectsList suspectsList;
-    List<SuspectsList.Suspect> suspects;
-    public List<SuspectsList.Suspect> filteredSuspects;
+    public SuspectList suspectsList;
+    List<Suspect> suspects;
+    public List<Suspect> filteredSuspects;
     
     void Start()
     {
@@ -15,7 +15,7 @@ public class FilteringSuspects : MonoBehaviour
     }
 
     private void RealStart (){
-        filteredSuspects = new List<SuspectsList.Suspect>();
+        filteredSuspects = new List<Suspect>();
         
         suspects = suspectsList.suspects;
 
@@ -37,7 +37,7 @@ public class FilteringSuspects : MonoBehaviour
     void FindDistinctHairColors()
     {
         List<string> hairColors = new List<string>();
-        foreach(SuspectsList.Suspect suspect in suspects)
+        foreach(Suspect suspect in suspects)
         {
             if(!hairColors.Contains(suspect.hair))
             {
@@ -50,7 +50,7 @@ public class FilteringSuspects : MonoBehaviour
     void PutDistinctHeightSlots()
     {
         List<string> heights = new List<string>();
-        foreach(SuspectsList.Suspect suspect in suspects)
+        foreach(Suspect suspect in suspects)
         {
             if(!heights.Contains(suspect.height))
             {
@@ -75,7 +75,7 @@ public class FilteringSuspects : MonoBehaviour
 
     void FindDistinctGender(){
         List<string> genders = new List<string>();
-        foreach(SuspectsList.Suspect suspect in suspects)
+        foreach(Suspect suspect in suspects)
         {
             if(!genders.Contains(suspect.gender)){
                 genders.Add(suspect.gender);
@@ -87,7 +87,7 @@ public class FilteringSuspects : MonoBehaviour
     void FindDistinctClothes()
     {
         List<string> clothings = new List<string>();
-        foreach(SuspectsList.Suspect suspect in suspects)
+        foreach(Suspect suspect in suspects)
         {
             if(!clothings.Contains(suspect.clothing))
             {
@@ -100,7 +100,7 @@ public class FilteringSuspects : MonoBehaviour
     void FindDistinctRelation()
     {
         List<string> relations = new List<string>();
-        foreach(SuspectsList.Suspect suspect in suspects)
+        foreach(Suspect suspect in suspects)
         {
             if(!relations.Contains(suspect.relation))
             {
@@ -123,7 +123,7 @@ public class FilteringSuspects : MonoBehaviour
         FilterByRelation(GameObject.Find("RelationFilter").GetComponent<TMP_Dropdown>());
         GameObject placeholder = GameObject.Find("ScrollSuspectsNames/Viewport/Suspects");
         placeholder.GetComponent<TextMeshProUGUI>().text = "";
-        foreach(SuspectsList.Suspect suspect in filteredSuspects)
+        foreach(Suspect suspect in filteredSuspects)
         {
             placeholder.GetComponent<TMPro.TextMeshProUGUI>().text += suspect.name + "\n";
         }

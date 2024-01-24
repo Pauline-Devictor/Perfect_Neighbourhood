@@ -2,22 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuspectsList : MonoBehaviour
+public class SuspectList : MonoBehaviour
 {
     public TextAsset suspectsCSV;
     public List<Suspect> suspects;
     private string[,] suspectsArray;
-
-    public class Suspect
-    {
-        public string name;
-        public string gender;
-        public string[] positions = new string[5];
-        public string hair;
-        public string height;
-        public string relation;
-        public string clothing;
-    }
 
     void Start()
     {

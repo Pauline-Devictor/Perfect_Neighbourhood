@@ -11,7 +11,7 @@ public class FilteringPositions : MonoBehaviour
     private GameObject placeholder;
     public GameObject suspectMarker;
     public GameObject objMarker;
-    public List<SuspectsList.Suspect> suspects;
+    public List<Suspect> suspects;
 
     public void Start(){
         slider = GameObject.Find("Slider");
@@ -20,7 +20,7 @@ public class FilteringPositions : MonoBehaviour
         setupMap(null, 0);
     }
 
-    void setupMap(List<SuspectsList.Suspect> suspects, int timeSlot){
+    void setupMap(List<Suspect> suspects, int timeSlot){
         if(suspects == null) return;
         GameObject map = GameObject.Find("MapMenu");
         List<ObjectsList.ObjectSus> objs = GetComponent<ObjectsList>().objectSus;
@@ -33,7 +33,7 @@ public class FilteringPositions : MonoBehaviour
         foreach(string location in locations.Keys){
             count.Add(location, 0);
         }
-        foreach(SuspectsList.Suspect suspect in suspects){
+        foreach(Suspect suspect in suspects){
             if(locations.ContainsKey(suspect.positions[timeSlot])){
                 count[suspect.positions[timeSlot]] += 1;
                 Vector3 position = locations[suspect.positions[timeSlot]];
