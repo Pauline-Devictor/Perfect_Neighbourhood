@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BuildingSelectionController : MonoBehaviour
 {
+    public TextAsset suspectCsvFile;
+    public TextAsset objectCsvFile;
     public TextMeshPro BuildingName;
     public GameObject BuildingDetails;
     public TextMeshPro SuspectListContainer;
@@ -18,8 +20,8 @@ public class BuildingSelectionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RetrieveData retrieveData = GetComponent<RetrieveData>();
-        suspects = retrieveData.Suspects;
+        DataStore dataStore = GameObject.Find("DataStore").GetComponent<DataStore>();
+        suspects = dataStore.Suspects;
         BuildingDetails.SetActive(false);
     }
 

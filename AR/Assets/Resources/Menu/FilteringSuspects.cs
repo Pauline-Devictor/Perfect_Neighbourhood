@@ -15,10 +15,10 @@ public class FilteringSuspects : MonoBehaviour
 
     private void RealStart()
     {
-        RetrieveData retrieveData = GetComponent<RetrieveData>();
+        DataStore dataStore = GameObject.Find("DataStore").GetComponent<DataStore>();
         filteredSuspects = new List<Suspect>();
 
-        suspects = retrieveData.Suspects;
+        suspects = dataStore.Suspects;
 
         FindDistinctHairColors();
         PutDistinctHeightSlots();

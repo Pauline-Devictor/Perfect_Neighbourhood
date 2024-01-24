@@ -12,6 +12,7 @@ public class FilteringPositions : MonoBehaviour
     public GameObject suspectMarker;
     public GameObject objMarker;
     public List<Suspect> suspects;
+    public List<ObjectSus> objs;
 
     public void Start()
     {
@@ -19,13 +20,15 @@ public class FilteringPositions : MonoBehaviour
         locations = GetComponent<Locations>().locations;
         placeholder = GameObject.Find("ScrollObjects/Viewport/Objects");
         setupMap(null, 0);
+        DataStore dataStore = GameObject.Find("DataStore").GetComponent<DataStore>();
+        suspects = dataStore.Suspects;
+        objs = dataStore.Objects;
     }
 
     void setupMap(List<Suspect> suspects, int timeSlot)
     {
         if (suspects == null) return;
         GameObject map = GameObject.Find("MapMenu");
-        List<ObjectSus> objs = GetComponent<ObjectsList>().objectSus;
         foreach (Transform child in map.transform)
         {
             if (child.gameObject.name != "Image")
