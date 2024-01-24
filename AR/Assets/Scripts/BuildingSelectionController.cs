@@ -114,7 +114,7 @@ public class BuildingSelectionController : MonoBehaviour
         BuildingDetails.transform.position = selectedBuilding.transform.position + new Vector3(0, selectedBuilding.transform.GetComponent<Collider>().bounds.size.y, 0);
     }
 
-    public List<Suspect> GetSuspectsForBuilding(string buildingName)
+    List<Suspect> GetSuspectsForBuilding(string buildingName)
     {
         SuspectListContainer.text = suspects.Count.ToString();
         List<Suspect> suspectsForBuilding = new List<Suspect>();
@@ -134,13 +134,59 @@ public class BuildingSelectionController : MonoBehaviour
         return suspectsForBuilding;
     }
 
-    public void ShowSuspectsForBuilding(SelectableBuilding building)
+    int indexToHour(int index)
+    {
+        return index + 13;
+    }
+
+    string rangesToString(List<int[]> ranges)
+    {
+        string result = "";
+        foreach (int[] range in ranges)
+        {
+            result += range[0].ToString() + "h - " + range[1].ToString() + "h, ";
+        }
+        return result;
+    }
+
+    string GetPresenceRangeForSuspectInBuilding(Suspect suspect, string buildingName)
+    {
+        var ranges = new List<int[]>();
+        int[] currentRange = new int[2];
+        for (int i = 0; i < suspect.positions.Length; i++)
+        {
+            if (suspect.positions[i] == buildingName)
+            {
+                if (currentRange[0] == 0)
+                {
+                    currentRange[0] = indexToHour(i);
+                }
+                currentRange[1] = indexToHour(i);
+            }
+            else
+            {
+                if (currentRange[0] != 0)
+                {
+                    ranges.Add(currentRange);
+                    currentRange = new int[2];
+                }
+            }
+        }
+        if (currentRange[0] != 0)
+        {
+            ranges.Add(currentRange);
+        }
+
+        return rangesToString(ranges);
+    }
+
+    void ShowSuspectsForBuilding(SelectableBuilding building)
     {
         List<Suspect> suspectsForBuilding = GetSuspectsForBuilding(building.BuildingName);
         string suspectList = "";
         foreach (Suspect suspect in suspectsForBuilding)
         {
-            suspectList += suspect.name + "\n";
+            suspectList += suspect.name + ": " + GetPresenceRangeForSuspectInBuilding(suspect, building.BuildingName) + "\n";
         }
         SuspectListContainer.text = suspectList;
     }
